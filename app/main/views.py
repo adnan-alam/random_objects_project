@@ -17,3 +17,8 @@ def generate_random_objects_file():
     url = f"/download/{output_file}"
     status_code = 201
     return make_response(jsonify({"url": url}), status_code)
+
+
+@app.route("/download/<path:file_name>", methods=["GET"])
+def download_random_objects_file(file_name):
+    return send_from_directory(MEDIA_DIR_PATH, file_name, as_attachment=True)
