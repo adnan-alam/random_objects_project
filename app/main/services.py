@@ -63,3 +63,40 @@ class RandomObjectsFileGenerator:
                 file_size = os.path.getsize(file_path)
 
         return self.file_name
+
+
+def get_random_objects_file_report(file_name):
+    file_path = os.path.join(MEDIA_DIR_PATH, file_name)
+
+    file_not_found = False
+    (
+        total_alphabetical_strings,
+        total_integers,
+        total_real_numbers,
+        total_alphanumerics,
+    ) = [0] * 4
+
+    if os.path.exists(file_path):
+        with open(file_path, "r") as f_obj:
+            file_content = f_obj.read().strip(",")
+            objects_list = file_content.split(",")
+
+            for obj in objects_list:
+                if obj.isalpha():
+                    total_alphabetical_strings += 1
+                elif obj.isdigit():
+                    total_integers += 1
+                elif obj.isalnum():
+                    total_alphanumerics += 1
+                else:
+                    total_real_numbers += 1
+    else:
+        file_not_found = True
+
+    report = {
+        "total_alphabetical_strings": total_alphabetical_strings,
+        "total_integers": total_integers,
+        "total_real_numbers": total_real_numbers,
+        "total_alphanumerics": total_alphanumerics,
+    }
+    return (report, file_not_found)
