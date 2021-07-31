@@ -14,7 +14,7 @@ def generate_random_objects_file():
     file_name = "random_objects.txt"
     random_obj_file_generator = RandomObjectsFileGenerator(max_file_size, file_name)
     output_file = random_obj_file_generator.generate_file()
-    url = f"/download/{output_file}"
+    url = f"/api/v1/download/{output_file}"
     status_code = 201
     return make_response(jsonify({"url": url}), status_code)
 
