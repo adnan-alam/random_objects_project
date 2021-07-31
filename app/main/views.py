@@ -22,3 +22,17 @@ def generate_random_objects_file():
 @app.route("/download/<path:file_name>", methods=["GET"])
 def download_random_objects_file(file_name):
     return send_from_directory(MEDIA_DIR_PATH, file_name, as_attachment=True)
+
+
+@app.route("/random-objects/report", methods=["GET"])
+def get_random_objects_report():
+    file_name = "random_objects.txt"
+    report, file_not_found = get_random_objects_file_report(file_name)
+
+    if file_not_found:
+        error_msg = "File not found! Generate one first"
+        status_code = 400
+        return make_response(jsonify({"message": error_msg}), status_code)
+    else:
+        status_code = 200
+        return make_response(jsonify(report), status_code)
