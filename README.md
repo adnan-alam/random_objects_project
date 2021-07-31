@@ -1,10 +1,11 @@
 ## random_objects_project
 
-REST API based on Flask. 
+REST API based on Flask.
 Have these functionalities:
-  - Endpoint to generate a file of 2MB size(exceeds 2MB, approx. 2.1MB), which contains 4 types of random objects (alphabetical strings, real numbers, integers, alphanumerics).
-  - Endpoint to download the generated file.
-  - Endpoint to get a report of total number of each random object.
+
+- Endpoint to generate a file of 2MB size(exceeds 2MB, approx. 2.1MB), which contains 4 types of random objects (alphabetical strings, real numbers, integers, alphanumerics).
+- Endpoint to download the generated file.
+- Endpoint to get a report of total number of each random object.
 
 ---
 
@@ -67,7 +68,7 @@ Response (JSON):
 
 ```bash
 {
-  "url": "/download/random_objects.txt"
+  "url": "/api/v1/download/random_objects.txt"
 }
 ```
 
